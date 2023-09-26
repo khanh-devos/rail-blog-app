@@ -1,0 +1,47 @@
+CREATA A TABLE post
+
+# create a post_table migration and a post controller
+# Notice: createdAt & updatedAt is default in rails 7
+Ter: rails generate scaffold post author_id:integer title:string text:text commentsCounter:integer likesCounter:integer 
+
+# send the post_table migration to create a table "post" in Database
+Ter: rails db:migrate
+
+# how to validate an attr :title (empty not permitted)
+# Enter the class post
+validates_presence_of :title
+
+# rail shell for interacting with Database
+Ter: rails console
+>>: Post.first          #retrieve the first object (line) of the table post.
+
+# created a transaction with a query to insert a new post into the posts table
+>>: Post.create! title:"console", text:"Nice!"
+
+# search with condition
+>>: Post.where(created_at: Time.now.all_day)                # today
+>>: Post.where(created_at: Time.now.yesterday.all_day)      # yesterday
+
+# how to attach a new image into a post = use action_text
+Ter: rails action_text:install
+Ter: bundle                        #to get image_processing gem
+Ter: rails db:migrate               
+# inside post model, add
+has_rich_text :content             # attr content configured
+# inside html form, modify
+form.text_area => form.rich_text_area
+
+=============================================
+#!# HOW TO USE SOME OTHER JavaScript FROM npm
+=============================================
+# We use a package "local-time" to localize the time of creation of a post.
+# Notice: this way is just use an cdn or an api (no download directly)
+Ter: ./bin/importmap pin local-time 
+# In file application.json, add:
+import LocalTime from 'local-time'
+LocalTime.start()
+# How to show how long was a post created.
+# In html file, add:
+<%= time_tag post.created_at, "data-local": "time-ago" %>
+# Now we download the JS package.
+Ter: ./bin/importmap pin local-time --download
