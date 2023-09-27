@@ -35,13 +35,51 @@ form.text_area => form.rich_text_area
 #!# HOW TO USE SOME OTHER JavaScript FROM npm
 =============================================
 # We use a package "local-time" to localize the time of creation of a post.
-# Notice: this way is just use an cdn or an api (no download directly)
 Ter: ./bin/importmap pin local-time 
-# In file application.json, add:
+# In file 'app/javascript/application.js', add:
 import LocalTime from 'local-time'
 LocalTime.start()
 # How to show how long was a post created.
 # In html file, add:
 <%= time_tag post.created_at, "data-local": "time-ago" %>
+# Notice: this way is just use an cdn or an api (no download directly)
+# We could see it in file 'importmap.rb'
+
 # Now we download the JS package.
 Ter: ./bin/importmap pin local-time --download
+# everything is the same but not using the api 'local-time' any more.
+# We could see it in file 'importmap.rb'
+
+========= create class comment references to post =========
+Ter: rails g resource comment post:references user_id:integer text:text
+Ter: rails db:migrate
+Notice: add "has_many: comments" in class post
+
+========= create class user =========
+Ter: rails g scaffold user name:string photo:attachment bio:string postCounter:integer 
+Ter: rails db:migrate
+
+========= create class like : belongs to post and user =========
+Ter: rails g resource like user:references post:references
+Ter: rails db:migrate
+Notice: add "has_many: comments" in class post and user
+
+==============================================================
+How to create a references for 2 existing tables user and post
+===============================================================
+# First remove a column 'author_id' from a table post
+Ter: rails g migration remove_field_from_posts author_id:integer 
+Ter: rails db:migrate
+
+# Then add references
+Ter: rails g migration add_references_to_posts user:references
+# Inside db/migrate change from 1 to 2: (change "user_id" to "author_id")
+1> add_reference :posts, :user, null: false, foreign_key: true
+2> add_reference :posts, :author, null: false, foreign_key: {to_table: :users}
+Ter: rails db:migrate 
+# Then, inside models/user add:
+has_many :posts, foreign_key: :author_id
+# Then, inside models/post add:
+belongs_to :users
+
+
