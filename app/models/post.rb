@@ -4,12 +4,11 @@ class Post < ApplicationRecord
 
   belongs_to :user, foreign_key: 'author_id'
 
-  def self.countPosts(user)
+  def self.count_posts(user)
     user.update(postCounter: user.posts.size)
   end
 
   def recent_5_comments
-    self.comments.order(created_at: :desc).limit(5)
+    comments.order(created_at: :desc).limit(5)
   end
-
 end

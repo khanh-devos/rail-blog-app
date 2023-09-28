@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    pust "Here #{@user.id}"
     @user = User.new
   end
 
@@ -20,7 +19,6 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    pust "Here #{(user_params}"
     @user = User.new(user_params)
 
     respond_to do |format|
