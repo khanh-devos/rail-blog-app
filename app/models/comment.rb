@@ -1,8 +1,10 @@
 class Comment < ApplicationRecord
+  after_save :count_comments
   belongs_to :post, foreign_key: 'post_id'
   belongs_to :user, foreign_key: 'user_id'
 
-  def self.count_comments(post)
+  def count_comments
+    post = Comment.find(post_id)
     post.update(commentsCounter: post.comments.size)
   end
 end
