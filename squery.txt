@@ -1,0 +1,46 @@
+# create 2 users
+Ter: rails console
+irb: first_user = User.create(name: 'Tom', bio: 'Teacher from Mexico.')
+irb: first_user.photo.attach(io: File.open('app/assets/images/clement-m-F_-0BxGuVvo-unsplash.jpg'), filename: 'clement-m-F_-0BxGuVvo-unsplash.jpg')
+irb: ActiveStorage::Attachement.all
+
+irb: second_user = User.create(name: 'Lilly', bio: 'Teacher from Poland.')
+irb: second_user.photo.attach(io: File.open('app/assets/images/ty-chu-t-qGX86lpIM5Y-unsplash.jpg'), filename: 'ty-chu-t-qGX86lpIM5Y-unsplash.jpg')
+irb: second_user.photo
+
+
+# create 4 post:
+irb: u1 = User.first
+irb: u1.posts.create(title: 'Post 1', text: 'This is post 1')
+irb: u1.posts.create(title: 'Post 2', text: 'This is post 2')
+irb: u1.posts.create(title: 'Post 11', text: 'This is post 11')
+irb: u1.posts.create(title: 'Post 12', text: 'This is post 12')
+
+irb: u2 = User.second
+irb: u2.posts.create(title: 'Post 3', text: 'This is post 3')
+irb: u2.posts.create(title: 'Post 4', text: 'This is post 4')
+irb: u2.posts.create(title: 'Post 22', text: 'This is post 22')
+irb: u2.posts.create(title: 'Post 22', text: 'This is post 23')
+
+# Create 6 comments for each post:
+# show all ids of posts and convert to array by pluck
+irb: u1.posts.pluck('id')
+irb: u1.posts.pluck(:id).each { |index| 6.times {|i| Post.find_by(id: index).comments.create(user_id: u1.id, text: "Comment number is #{index}-#{i}") } }
+irb: u2.posts.pluck(:id).each { |index| 6.times {|i| Post.find_by(id: index).comments.create(user_id: u2.id, text: "Comment number is #{index}-#{i}") } }
+
+# CRUD: create, update, delete with find and find_by
+# Notice: find only for id
+irb: User.find(4).update(name: 'New name')
+irb: User.find_by(name: 'New name').update(name: "Old name")
+
+# Your models should include some additional methods.
+# Users
+# A method that returns the 3 most recent posts for a given user.
+Posts
+A method that updates the posts counter for a user.
+A method which returns the 5 most recent comments for a given post.
+Comments
+A method that updates the comments counter for a post.
+Likes
+A method that updates the likes counter for a post.
+Go to rails c and check if your methods are working.

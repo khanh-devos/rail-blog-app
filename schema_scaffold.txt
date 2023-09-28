@@ -2,6 +2,7 @@ CREATA A TABLE post
 
 # create a post_table migration and a post controller
 # Notice: createdAt & updatedAt is default in rails 7
+# Manual|Intruction: rails g scaffold --help 
 Ter: rails generate scaffold post author_id:integer title:string text:text commentsCounter:integer likesCounter:integer 
 
 # send the post_table migration to create a table "post" in Database
@@ -53,7 +54,10 @@ Ter: ./bin/importmap pin local-time --download
 ========= create class comment references to post =========
 Ter: rails g resource comment post:references user_id:integer text:text
 Ter: rails db:migrate
-Notice: add "has_many: comments" in class post
+# in class post, add:
+has_many :comments, foreign_key: 'post_id'
+# in comment class, add:
+belongs_to :post, foreign_key: "post_id" 
 
 ========= create class user =========
 Ter: rails g scaffold user name:string photo:attachment bio:string postCounter:integer 
@@ -62,10 +66,17 @@ Ter: rails db:migrate
 ========= create class like : belongs to post and user =========
 Ter: rails g resource like user:references post:references
 Ter: rails db:migrate
-Notice: add "has_many: comments" in class post and user
+#in class post, add:
+has_many :comments, foreign_key: 'post_id'
+#in class user, add:
+has_many :likes, foreign_key: 'user_id'
+#in like class, add:
+belongs_to :user, foreign_key: 'user_id'
+belongs_to :post, foreign_key: 'post_id' 
 
 ==============================================================
 How to create a references for 2 existing tables user and post
+Manual|Intruction: rails g scaffold --help 
 ===============================================================
 # First remove a column 'author_id' from a table post
 Ter: rails g migration remove_field_from_posts author_id:integer 
@@ -77,9 +88,9 @@ Ter: rails g migration add_references_to_posts user:references
 1> add_reference :posts, :user, null: false, foreign_key: true
 2> add_reference :posts, :author, null: false, foreign_key: {to_table: :users}
 Ter: rails db:migrate 
-# Then, inside models/user add:
+# Then, inside models/user, add:
 has_many :posts, foreign_key: :author_id
 # Then, inside models/post add:
-belongs_to :users
+belongs_to :users, foreign_key: :author_id
 
 
