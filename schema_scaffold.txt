@@ -1,5 +1,8 @@
 CREATA A TABLE post
 
+Manjaro Notice: grant permission first
+Manjaro Notice: grant permission first
+
 # create a post_table migration and a post controller
 # Notice: createdAt & updatedAt is default in rails 7
 # Manual|Intruction: rails g scaffold --help 
@@ -94,3 +97,6 @@ has_many :posts, foreign_key: :author_id
 belongs_to :users, foreign_key: :author_id
 
 
+======= MODIFY CONTROLLER ======================================
+Add controller and controller unit_test to an existing model Like and Comment
+Ter: rails g scaffold like user:references post:references -f --skip

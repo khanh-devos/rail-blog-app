@@ -1,0 +1,7 @@
+# in Gemfile, part development test, add: gem "rspec-rails"
+Ter: bundle i 
+Ter: rails g rspec:install
+# Then, enter folder "spec" to create "test_user.rb"
+Ter: rspec spec/*
+
+# OR we could use default test inside rails: rails test test/models/*

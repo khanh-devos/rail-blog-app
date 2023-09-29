@@ -36,11 +36,17 @@ irb: User.find_by(name: 'New name').update(name: "Old name")
 # Your models should include some additional methods.
 # Users
 # A method that returns the 3 most recent posts for a given user.
-Posts
-A method that updates the posts counter for a user.
-A method which returns the 5 most recent comments for a given post.
-Comments
-A method that updates the comments counter for a post.
-Likes
-A method that updates the likes counter for a post.
-Go to rails c and check if your methods are working.
+
+# Posts
+# A method that updates the posts counter for a user.
+# A method which returns the 5 most recent comments for a given post.
+
+# Comments
+# A method that updates the comments counter for a post.
+
+# Likes
+# A method that updates the likes counter for a post.
+In the class Like, add after "belongs_to :posts",
+counter_cache: 'likesCounter'
+
+# Go to rails c and check if your methods are working.
