@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test 'self.recent_3_posts' do
-    arr = User.recent_3_posts(users(:one))
+  test 'self.recent_posts' do
+    arr = users(:one).recent_posts
     assert_equal 3, arr.length
     assert_equal 'MyString4', arr.first.title
   end

@@ -1,28 +1,57 @@
-require 'spec_helper'
 require 'rails_helper'
 
 RSpec.describe User do
-  context 'Text class User: ' do
-    before :each do
-      @name = 'Khanh'
-      @bio = 'Saigon'
-      @user = User.new(name: @name, bio: @bio)
-    end
+  subject { User.create(name: 'John Doe', postCounter: 0) }
 
-    it 'test all attrs' do
-      expect(@user.name).to eql(@name)
-      expect(@user.bio).to eql(@bio)
-      expect(@user.postCounter).to eql(nil)
-    end
+  it 'name should be present' do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
 
-    it 'validate invalid blank name' do
-      user1 = User.new(name: nil, bio: 'bio', postCounter: 1)
-      expect(user1).to be_invalid
-    end
+  it 'postCounter should be present' do
+    subject.postCounter = nil
+    expect(subject).to_not be_valid
+  end
 
-    it 'validate postCounter greater_than_or_equal_to 0' do
-      user2 = User.new(name: @name, bio: 'bio', postCounter: -1)
-      expect(user2).to be_invalid
-    end
+  it 'postCounter should be greater than or equal to 0' do
+    subject.postCounter = -1
+    expect(subject).to_not be_valid
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'should have many posts' do
+    assc = described_class.reflect_on_association(:posts)
+    expect(assc.macro).to eql :has_many
+  end
+
+  it 'should have many comments' do
+    assc = described_class.reflect_on_association(:comments)
+    expect(assc.macro).to eq :has_many
+  end
+
+  it 'should have many likes' do
+    assc = described_class.reflect_on_association(:likes)
+    expect(assc.macro).to eq :has_many
+  end
+
+  it 'test method recent_posts' do
+    Post.create(author_id: subject.id, title: 'title1', commentsCounter: 0, likesCounter: 0)
+    Post.create(author_id: subject.id, title: 'title2', commentsCounter: 0, likesCounter: 0)
+    Post.create(author_id: subject.id, title: 'title3', commentsCounter: 0, likesCounter: 0)
+    Post.create(author_id: subject.id, title: 'title4', commentsCounter: 0, likesCounter: 0)
+
+    expect(subject.posts.size).to eql(4)
+    expect(subject.recent_posts.size).to eql(3)
+    expect(subject.recent_posts.first.title).to eql('title4')
+  end
+
+  it 'test postCounter auto increment' do
+    Post.create(author_id: subject.id, title: 'title1', commentsCounter: 0, likesCounter: 0)
+
+    user = User.find(subject.id)
+    expect(user.postCounter).to eql(1)
   end
 end
