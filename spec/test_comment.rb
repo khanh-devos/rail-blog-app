@@ -5,21 +5,21 @@ RSpec.describe Comment do
     @user = User.create(
       name: 'Peter',
       bio: 'Engineer',
-      postCounter: 0
+      posts_counter: 0
     )
     @post = Post.create(
       title: 'Blog App',
       text: 'Ruby on Rails',
       author_id: @user.id,
-      commentsCounter: 0,
-      likesCounter: 0
+      comments_counter: 0,
+      likes_counter: 0
     )
   end
 
-  it '@users commentsCounter should increase by one' do
+  it '@users comments_counter should increase by one' do
     Comment.create(text: 'Hello there!!', user_id: @user.id, post_id: @post.id)
     Comment.create(text: 'Welcome home!!', user_id: @user.id, post_id: @post.id)
     post = Post.find(@post.id)
-    expect(post.commentsCounter).to eq(2)
+    expect(post.comments_counter).to eq(2)
   end
 end

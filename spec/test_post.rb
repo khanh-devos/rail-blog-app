@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Post do
   before(:all) do
-    @user = User.create(name: 'Peter', bio: 'Engineer', postCounter: 0)
-    @post = Post.create(author_id: @user.id, title: 'Title', commentsCounter: 0, likesCounter: 0)
+    @user = User.create(name: 'Peter', bio: 'Engineer', posts_counter: 0)
+    @post = Post.create(author_id: @user.id, title: 'Title', comments_counter: 0, likes_counter: 0)
   end
 
   it 'title should be present' do
@@ -16,33 +16,33 @@ RSpec.describe Post do
     expect(@post).to_not be_valid
   end
 
-  it 'commentsCounter should be present' do
-    @post.commentsCounter = nil
+  it 'comments_counter should be present' do
+    @post.comments_counter = nil
     expect(@post).to_not be_valid
   end
 
-  it 'commentsCounter should be an integer' do
-    @post.commentsCounter = 'string'
+  it 'comments_counter should be an integer' do
+    @post.comments_counter = 'string'
     expect(@post).to_not be_valid
   end
 
-  it 'commentsCounter should be greater than or equal to 0' do
-    @post.commentsCounter = -1
+  it 'comments_counter should be greater than or equal to 0' do
+    @post.comments_counter = -1
     expect(@post).to_not be_valid
   end
 
-  it 'likesCounter should be present' do
-    @post.likesCounter = nil
+  it 'likes_counter should be present' do
+    @post.likes_counter = nil
     expect(@post).to_not be_valid
   end
 
-  it 'likesCounter should be an integer' do
-    @post.likesCounter = 'string'
+  it 'likes_counter should be an integer' do
+    @post.likes_counter = 'string'
     expect(@post).to_not be_valid
   end
 
-  it 'likesCounter should be greater than or equal to 0' do
-    @post.likesCounter = -1
+  it 'likes_counter should be greater than or equal to 0' do
+    @post.likes_counter = -1
     expect(@post).to_not be_valid
   end
 
@@ -75,10 +75,10 @@ RSpec.describe Post do
     expect(@post.recent_comments.first.text).to eql('title7')
   end
 
-  it 'test commentsCounter auto increment' do
+  it 'test comments_counter auto increment' do
     Comment.create(user_id: @user.id, post_id: @post.id, text: 'title1')
     Comment.create(user_id: @user.id, post_id: @post.id, text: 'title2')
     post = Post.find(@post.id)
-    expect(post.commentsCounter).to eql(2)
+    expect(post.comments_counter).to eql(2)
   end
 end

@@ -5,6 +5,6 @@ class Comment < ApplicationRecord
 
   def count_comments
     post = Post.find(post_id)
-    post.update(commentsCounter: post.comments.size)
+    post.update(comments_counter: post.comments.size)
   end
 end
