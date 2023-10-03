@@ -2,7 +2,9 @@
   <h2>_user</h2>
   <div class="user_item" >
     <p>
-      <%= image_tag user.photo, class:'user_photo' %>
+    <% if !user.photo.blob.nil? %>
+      <%= image_tag user.photo, class:'user_photo', alt:"user avatar" %>
+    <% end %>
     </p>
     
     
