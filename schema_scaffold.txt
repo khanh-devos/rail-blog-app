@@ -100,3 +100,15 @@ belongs_to :users, foreign_key: :author_id
 ======= MODIFY CONTROLLER ======================================
 Add controller and controller unit_test to an existing model Like and Comment
 Ter: rails g scaffold like user:references post:references -f --skip
+
+======= RENAME COLUMN =========
+Ter: rails g migration rename_column_users
+In a new migrate file "rename_column_users", add:
+rename_column :users, :postCounter, :posts_counter
+Ter: rails db:migrate 
+
+==== add default ==============
+Ter: rails g migration add_default_users
+In a new migrate file "add_default_users", add:
+change_column :users, :posts_counter, :integer, default: 0
+Ter: rails db:migrate 

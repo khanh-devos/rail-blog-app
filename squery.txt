@@ -30,6 +30,9 @@ irb: u1.posts.pluck(:id).each { |index| 6.times {|i| Post.find_by(id: index).com
 
 irb: u2.posts.pluck(:id).each { |index| 6.times {|i| Post.find_by(id: index).comments.create(user_id: u2.id, text: "Comment number is #{index}-#{i}") } }
 
+
+irb: u1.posts.pluck(:id).each { |index| 6.times {|i| Post.find_by(id: index).comments.create(user_id: u2.id, text: "Comment number is #{index}-#{i}") } }
+
 # CRUD: create, update, delete with find and find_by
 # Notice: find only for id
 irb: User.find(4).update(name: 'New name')

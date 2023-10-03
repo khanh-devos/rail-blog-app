@@ -1,27 +1,32 @@
-<div id="<%= dom_id post %>">
+<div id="<%= dom_id post %>" class="post-item">
   <p>
-    <strong>Author:</strong>
-    <%= post.author_id %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
+    <strong>Post:</strong>
     <%= post.title %>
   </p>
 
   <p>
-    <strong>Text:</strong>
     <%= post.text %>
   </p>
 
   <p>
-    <strong>Commentscounter:</strong>
-    <%= post.commentsCounter %>
+    <strong>Comments:</strong>
+    <%= post.comments_counter %>
+    <strong>Likes:</strong>
+    <%= post.likes_counter %>
   </p>
 
-  <p>
-    <strong>Likescounter:</strong>
-    <%= post.likesCounter %>
-  </p>
+
+
+  
+  <% if url_for.match(/posts/) %>
+    <% if url_for.match(/posts\//) %>
+        <%= render post.comments %>
+      <% else %>
+        <%= render post.comments.limit(3) %>
+    <% end %>  
+  <% end %>
+  
+
+  
 
 </div>

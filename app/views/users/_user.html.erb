@@ -1,22 +1,30 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Name:</strong>
-    <%= user.name %>
-  </p>
+<div id="<%= dom_id user %>" >
+  <h2>_user</h2>
+  <div class="user_item" >
+    <p>
+      <%= image_tag user.photo, class:'user_photo' %>
+    </p>
+    
+    
+    <p>
+      <strong>Name:</strong>
+      <%= user.name %>
+    </p>
 
-  <p>
-    <strong>Photo:</strong>
-    <%= link_to user.photo.filename, user.photo if user.photo.attached? %>
-  </p>
+
+    <p>
+      <strong>Posts counter:</strong>
+      <%= user.posts_counter %>
+    </p>
+
+  </div>
 
   <p>
     <strong>Bio:</strong>
     <%= user.bio %>
   </p>
 
-  <p>
-    <strong>Postcounter:</strong>
-    <%= user.postCounter %>
-  </p>
+  <%= render @posts if !@posts.nil? && !url_for.include?('post') %>
 
+  
 </div>

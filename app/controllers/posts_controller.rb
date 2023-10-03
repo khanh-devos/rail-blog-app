@@ -1,13 +1,16 @@
 class PostsController < ApplicationController
-  # before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show]
 
   # # GET /posts or /posts.json
-  # def index
-  #   @posts = Post.all
-  # end
+  def index
+    @user = User.find(params[:user_id])
+    @posts = @user.posts
+  end
 
   # # GET /posts/1 or /posts/1.json
-  # def show; end
+  def show
+    @post = Post.find(params[:id])
+  end
 
   # # GET /posts/new
   # def new
@@ -55,15 +58,20 @@ class PostsController < ApplicationController
   #   end
   # end
 
-  # private
+  private
 
-  # # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
   # def set_post
   #   @post = Post.find(params[:id])
   # end
 
-  # # Only allow a list of trusted parameters through.
-  # def post_params
-  #   params.require(:post).permit(:author_id, :title, :text, :commentsCounter, :likesCounter)
-  # end
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:author_id, :title, :text, :comments_counter, :likes_counter)
+    # params.require(:user)
+  end
 end

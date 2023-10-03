@@ -1,0 +1,9 @@
+<div id="<%= dom_id comment %>" class="comment-item">
+  
+  <p>
+    <%= User.find(comment.user_id).name %>
+    :
+    <%= comment.text %>
+  </p>
+
+</div>

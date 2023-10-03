@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-  has_one_attached :photo
+  has_one_attached :photo do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+  end
 
   validates :name, presence: true
   validates :posts_counter, numericality: { greater_than_or_equal_to: 0 }
-  
 
   has_many :comments, foreign_key: 'user_id'
   has_many :likes, foreign_key: 'user_id'

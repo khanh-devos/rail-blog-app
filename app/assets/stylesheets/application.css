@@ -13,3 +13,48 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+    --total_padding: 1rem 10rem
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+body {
+    padding: var(--total_padding);
+}
+
+.user_photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    text-align: left;
+}
+
+.user_item {
+    margin-top: 1rem;
+    border: 1px solid green;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    align-items: center;
+    
+}
+
+.post-item {
+    margin-top: 1rem;
+}
+.bottom {
+    margin-top: 1rem;
+}

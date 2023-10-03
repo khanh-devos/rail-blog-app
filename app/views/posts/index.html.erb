@@ -1,14 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Posts</h1>
+<h1>Posts & Comments</h1>
 
 <div id="posts">
+  
+  <%= render @user %>
+
   <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+    <%= link_to show_a_user_a_post_comments_path(id: post.id) do %>
+      
+      <%= render post %>
+
+    <% end %>
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<p>
+  <strong>
+  <%= link_to "Back to all posts", show_a_user_path(id: @user.id) %>
+  </strong>
+</p>
+<%# <%= link_to "New post", new_post_path %>
