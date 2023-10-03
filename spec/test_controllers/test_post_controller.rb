@@ -43,6 +43,7 @@ RSpec.describe 'Posts', type: 'request' do
 
     it 'renders "show template" with right text' do
       expect(response.body).to match('Post test')
+      expect(response.body).to match('Show Comments')
     end
 
     it 'does not render a different template' do
