@@ -5,7 +5,11 @@
   </h3>
 
   <p>
-    <%= "#{post.text}. " * 10 %>
+    <% if url_for.match(/posts\//) %>
+      <%= "#{post.text}. " * 30 %>
+    <% else %>
+      <%= "#{post.text}. " * 10 %>
+    <% end %>  
   </p>
 
   <p class="comment-like-bottom">
