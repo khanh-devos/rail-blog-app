@@ -23,7 +23,7 @@ RSpec.describe 'User', type: :request do
 
   describe 'Get users#show' do
     before(:each) do
-      user = User.create(name: 'test')
+      user = User.create(name: 'today')
       get "/users/#{user.id}"
     end
 

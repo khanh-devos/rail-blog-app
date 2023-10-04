@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-Recent Posts
+<h2>Recent Posts</h2>
 
 <%= render @user %>
 
@@ -9,9 +9,10 @@ Recent Posts
   <p>
     <strong><%= link_to "Back to users", users_path %></strong>
   </p>
+
   <p>
     <strong>
-    <%= link_to "SHOW ALL POSTS", show_a_user_posts_comments_path(user_id: @user.id) %>
+    <%= link_to "SHOW ALL POSTS", "/users/#{@user.id}/posts" %>
     </strong>
   </p>
   <%# <%= button_to "Destroy this user", @user, method: :delete %>

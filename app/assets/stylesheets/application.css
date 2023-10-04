@@ -18,10 +18,11 @@
   --total_padding: 1rem 10rem;
 }
 
-* {
+*:not(h2, h3) {
   padding: 0;
   margin: 0;
   text-align: left;
+  font-size: 15px;
 }
 
 body {
@@ -29,8 +30,8 @@ body {
 }
 
 .user_photo {
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  height: 10rem;
   object-fit: cover;
 }
 
@@ -49,12 +50,47 @@ p {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
   align-items: center;
+  height: 10rem;
+}
+
+.bio {
+  border: 1px solid green;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 
 .post-item {
   margin-top: 1rem;
+  border: 0.1rem solid olivedrab;
+  padding: 1rem;
+}
+
+.comment-like-bottom {
+  text-align: right;
 }
 
 .bottom {
   margin-top: 1rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.comments-container {
+  margin-top: 0.2rem;
+  padding-top: 0.2rem;
+}
+
+.comment-item {
+  border-bottom: 0.1rem dashed rgb(225, 225, 225);
+  padding-top: 0.2rem;
+}
+
+.comment-item:first-child {
+  border-top: 0.1rem solid greenyellow;
 }

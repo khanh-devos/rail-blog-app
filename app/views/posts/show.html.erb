@@ -3,9 +3,9 @@
 Show Comments
 <%= render @post %>
 
-<div>
+<div class="bottom">
   <strong>
-  <%= link_to "Back to posts", show_a_user_posts_comments_path %>
+  <%= link_to "Back to posts", "/users/#{@user.id}/posts" %>
   </strong>
   <%# <%= button_to "Destroy this post", @post, method: :delete %>
 </div>

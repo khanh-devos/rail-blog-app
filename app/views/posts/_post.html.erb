@@ -1,14 +1,14 @@
 <div id="<%= dom_id post %>" class="post-item">
-  <p>
+  <h3>
     <strong>Post:</strong>
     <%= post.title %>
-  </p>
+  </h3>
 
   <p>
-    <%= post.text %>
+    <%= "#{post.text}. " * 10 %>
   </p>
 
-  <p>
+  <p class="comment-like-bottom">
     <strong>Comments:</strong>
     <%= post.comments_counter %>
     <strong>Likes:</strong>
@@ -17,7 +17,7 @@
 
 
 
-  
+  <div class="comments-container">
   <% if url_for.match(/posts/) %>
     <% if url_for.match(/posts\//) %>
         <%= render post.comments %>
@@ -25,7 +25,7 @@
         <%= render post.comments.limit(3) %>
     <% end %>  
   <% end %>
-  
+  </div>
 
   
 

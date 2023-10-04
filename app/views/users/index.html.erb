@@ -3,10 +3,10 @@
 <h1>All users</h1>
 
 <div id="users">
-  <% @users.each do |u| %>
-    <%= link_to show_a_user_path(u.id) do %>
+  <% @users.each do |user| %>
+    <%= link_to "/users/#{user.id}" do %>
       
-      <%= render u %>
+      <%= render user %>
 
     <% end %>
   <% end %>

@@ -7,7 +7,7 @@
   <%= render @user %>
 
   <% @posts.each do |post| %>
-    <%= link_to show_a_user_a_post_comments_path(id: post.id) do %>
+    <%= link_to "/users/#{@user.id}/posts/#{post.id}" do %>
       
       <%= render post %>
 
@@ -15,9 +15,9 @@
   <% end %>
 </div>
 
-<p>
+<div class="bottom">
   <strong>
-  <%= link_to "Back to all posts", show_a_user_path(id: @user.id) %>
+  <%= link_to "Back to all posts", "/users/#{@user.id}" %>
   </strong>
-</p>
+</div>
 <%# <%= link_to "New post", new_post_path %>
