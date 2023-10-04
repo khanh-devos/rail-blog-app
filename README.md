@@ -92,6 +92,11 @@ it will install the required gemfile for running the project
 
 ### Usage
 
+```bash
+  rails s
+```
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
@@ -111,8 +116,8 @@ it will install the required gemfile for running the project
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Add Database to store recent message**
-- **Add Ui**
+- **Styling**
+- **UI**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
