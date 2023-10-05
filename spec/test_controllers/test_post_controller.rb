@@ -17,7 +17,7 @@ RSpec.describe 'Posts', type: 'request' do
     end
 
     it 'renders index template with right text' do
-      expect(response.body).to match('Posts & Comments')
+      expect(response.body).to match('Recent Comments')
       expect(response.body).to match('name for test')
     end
 
@@ -43,7 +43,7 @@ RSpec.describe 'Posts', type: 'request' do
 
     it 'renders "show template" with right text' do
       expect(response.body).to match('Post test')
-      expect(response.body).to match('Show Comments')
+      expect(response.body).to match('All Comments')
     end
 
     it 'does not render a different template' do

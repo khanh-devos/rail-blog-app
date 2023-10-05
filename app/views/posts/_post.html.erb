@@ -26,7 +26,7 @@
     <% if url_for.match(/posts\//) %>
         <%= render post.comments %>
       <% else %>
-        <%= render post.comments.limit(3) %>
+        <%= render post.recent_comments(5) %>
     <% end %>  
   <% end %>
   </div>

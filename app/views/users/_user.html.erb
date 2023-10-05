@@ -3,6 +3,8 @@
     <p>
     <% if !user.photo.blob.nil? %>
       <%= image_tag user.photo, class:'user_photo', alt:"user avatar" %>  
+    <% else %>
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" class="user_photo" alt="user avatar" />
     <% end %>
     </p>
     
@@ -28,7 +30,8 @@
     </p>
 
     
-    <%= render @posts  %>
+    <%# <%= render @posts  %>
+    <%= render user.recent_posts(3)  %>
     
   <% end %>
   
