@@ -66,7 +66,12 @@ p {
 }
 
 .comment-like-bottom {
+  margin-top: 1rem;
   text-align: right;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: flex-end;
 }
 
 .bottom {
@@ -93,4 +98,17 @@ p {
 
 .comment-item:first-child {
   border-top: 0.1rem solid greenyellow;
+}
+
+.form {
+  margin: 1rem 0;
+}
+
+.link-btn {
+  border: 0.1rem solid black;
+  padding: 0.1rem 0.3rem;
+  width: 7rem;
+  text-align: center;
+  border-radius: 1rem;
+  font-weight: bold;
 }

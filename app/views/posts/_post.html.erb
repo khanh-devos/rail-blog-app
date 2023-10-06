@@ -12,12 +12,20 @@
     <% end %>  
   </p>
 
-  <p class="comment-like-bottom">
-    <strong>Comments:</strong>
-    <%= post.comments_counter %>
-    <strong>Likes:</strong>
-    <%= post.likes_counter %>
-  </p>
+  <div class="comment-like-bottom">
+    <div class='link-btn'>
+      <strong>
+        <%= link_to 'New comment', comment_new_path(user_id: post.author_id, id: post.id) %>
+      </strong>
+    </div>
+
+    <strong>Comments:
+      <%= post.comments_counter %>
+    </strong>
+    <div>
+      <%= button_to "#{post.likes_counter} likes", like_create_path(user_id: post.author_id, id: post.id), method: 'post' %>
+    </div>
+  </div>
 
 
 

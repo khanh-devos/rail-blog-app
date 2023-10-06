@@ -1,0 +1,11 @@
+<%= form_with model: comment, url: comment_create_path(user_id: User.first.id, id: @post.id), method: 'post', local: true, scope: :comment do |form| %>
+
+  <div>
+    <%= form.label :comment, style: "display: block" %>
+    <%= form.text_area :text, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
