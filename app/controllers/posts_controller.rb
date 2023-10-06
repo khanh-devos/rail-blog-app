@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_user, only: %i[show index]
   before_action :set_post, only: %i[show]
+  before_action :set_current_user, only: %i[new create]
 
   # # GET /posts or /posts.json
   def index
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
 
   def create
     @new_post = Post.new(post_params)
-    @new_post.author_id = User.first.id
+    @new_post.author_id = @current_user.id
 
     if @new_post.save
       redirect_to "/users/#{@new_post.author_id}"
@@ -36,5 +37,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text)
+  end
+
+  def set_current_user
+    @current_user = current_user
   end
 end

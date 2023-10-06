@@ -1,14 +1,12 @@
 class CommentsController < ApplicationController
+  before_action :set_current_user, only: %i[new create]
+  before_action :set_post, only: %i[new create]
+
   # '/users/:user_id/posts/:id/comments/new'
-  def new
-    @post = Post.find(params[:id])
-  end
+  def new; end
 
   # '/users/:user_id/posts/:id/comments/create'
   def create
-    @post = Post.find(params[:id])
-    @current_user = User.first
-
     @new_comment = Comment.new(comment_params)
     @new_comment.user_id = @current_user.id
     @new_comment.post_id = @post.id
@@ -25,5 +23,13 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:text)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def set_current_user
+    @current_user = current_user
   end
 end
