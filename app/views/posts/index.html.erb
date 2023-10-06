@@ -13,7 +13,7 @@
   <% @posts.each do |post| %>
     <%= link_to "/users/#{@user.id}/posts/#{post.id}" do %>
       
-      <%= render post %>
+      <%= render "post", post: post %>
 
     <% end %>
   <% end %>
