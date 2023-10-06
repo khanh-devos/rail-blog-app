@@ -1,4 +1,4 @@
-<%= form_with(model: like), url: like_create_path(user_id: @current_user.id, id: @post.id), local: true, scope: :like do |form| %>
+<%= form_with(model: like), url: like_create_path(user_id: current_user.id, id: @post.id), local: true, scope: :like do |form| %>
 
   <div>  
     <strong>Likes:

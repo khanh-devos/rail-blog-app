@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  before_action :set_current_user, only: %i[new create]
   before_action :set_post, only: %i[new create]
 
   # '/users/:user_id/posts/:id/comments/new'
@@ -8,7 +7,7 @@ class CommentsController < ApplicationController
   # '/users/:user_id/posts/:id/comments/create'
   def create
     @new_comment = Comment.new(comment_params)
-    @new_comment.user_id = @current_user.id
+    @new_comment.user_id = current_user.id
     @new_comment.post_id = @post.id
 
     puts '====================================='
@@ -29,7 +28,4 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def set_current_user
-    @current_user = current_user
-  end
 end
