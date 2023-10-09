@@ -2,9 +2,9 @@
 
 <header>
   <h2>All users</h2>
-  <div class="link-btn">
-  <%= link_to 'New post', post_new_path(id: User.first.id), method: 'new' %>
-  </div>
+  
+  <%= button_to 'New post', post_new_path(id: current_user.id), method: 'get', class: "link-btn" %>
+  
 
 <header>
 <div id="users">

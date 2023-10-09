@@ -13,11 +13,8 @@
   </p>
 
   <div class="comment-like-bottom">
-    <div class='link-btn'>
-      <strong>
-        <%= link_to 'New comment', comment_new_path(user_id: post.author_id, id: post.id) %>
-      </strong>
-    </div>
+    
+    <%= button_to 'New comment', comment_new_path(user_id: post.author_id, id: post.id), method: 'get', class: 'link-btn' %>
 
     <strong>Comments:
       <%= post.comments_counter %>

@@ -53,6 +53,8 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'capybara'    # allow interact with the browser.
+  gem 'webdrivers'  # allow interact with the browser. (supporting capybara)
 end
 
 group :development do

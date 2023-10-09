@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :request do
   describe 'GET users#index' do
-    before(:each) { get users_path }
+    before(:each) { 
+      user1 = User.create(name: 'user1')
+      user2 = User.create(name: 'user1')
+      get users_path 
+    }
 
     it 'is success ' do
       expect(response).to have_http_status(:ok)
@@ -23,8 +27,9 @@ RSpec.describe 'User', type: :request do
 
   describe 'Get users#show' do
     before(:each) do
-      user = User.create(name: 'today')
-      get "/users/#{user.id}"
+      user1 = User.create(name: 'today')
+      user2 = User.create(name: 'today2')
+      get "/users/#{user1.id}"
     end
 
     it 'renders the correct template' do
