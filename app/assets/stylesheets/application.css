@@ -16,6 +16,11 @@
 
 :root {
   --total_padding: 1rem 10rem;
+
+  @media screen and (max-width: 768px) {
+    --total_padding: 1rem 1rem;
+  }
+
 }
 
 *:not(h2, h3) {
