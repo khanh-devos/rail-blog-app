@@ -1,0 +1,11 @@
+
+New comment
+<%= render @post %>
+
+<div class="form">
+<%= render 'form', comment: @comment %>
+</div>
+
+<div class="link-btn">
+    <%= link_to 'Back', "/users/#{@post.author_id}/posts/#{@post.id}" %>
+</div>

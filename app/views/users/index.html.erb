@@ -1,7 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>All users</h1>
+<header>
+  <h2>All users</h2>
+  <div class="link-btn">
+  <%= link_to 'New post', post_new_path(id: User.first.id), method: 'new' %>
+  </div>
 
+<header>
 <div id="users">
   <% @users.each do |user| %>
     <%= link_to "/users/#{user.id}" do %>
