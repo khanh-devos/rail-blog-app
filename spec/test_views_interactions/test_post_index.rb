@@ -24,15 +24,25 @@ RSpec.describe 'Post', type: 'feature' do
       visit "/users/#{@user1.id}/posts"
     end
 
-    it 'contain some place holders buttons and links' do
-      expect(page).to have_content('Recent Comments')
+    it 'show a photo of user1' do
+      expect(find("img[src='photo1']")).not_to be_nil
+    end
+
+    it "show user's name" do
       expect(page).to have_content('user1')
+    end
+
+    it 'show number of posts of user1' do
       expect(page).to have_content('Posts counter: 4')
+    end
 
-      expect(page).to have_button('New comment')
+    it 'show post titles' do
+      expect(page).to have_content('Post 1')
+      expect(page).to have_content('Post 2')
+      expect(page).to have_content('Post 3')
+      expect(page).to have_content('Post 4')
+
       expect(page).to have_content('Comments: 7')
-      expect(page).to have_button('2 likes')
-
       expect(page).to have_link('Back to all posts')
     end
 
@@ -40,12 +50,18 @@ RSpec.describe 'Post', type: 'feature' do
       expect(page).to have_selector('.comment-item', count: 5)
     end
 
-    it 'photo of user' do
-      expect(find(".user_photo[src='photo1']")).not_to be_nil
+    it 'show all the 4 posts of user1' do
+      expect(page).to have_selector('.post-item', count: 4)
     end
 
-    it 'show only first 3 posts' do
-      expect(page).to have_selector('.post-item', count: 4)
+    it 'show 2 likes for post1 and 0 likes for post2' do
+      within("a[href='/users/#{@user1.id}/posts/#{@post1.id}']") do
+        expect(page).to have_button('2 likes')
+      end
+
+      within("a[href='/users/#{@user1.id}/posts/#{@post2.id}']") do
+        expect(page).to have_button('0 likes')
+      end
     end
 
     it 'check link "Back to all posts" works fine' do

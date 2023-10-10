@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.describe 'User', type: 'feature' do
   describe 'test user#show' do
     before :each do
@@ -17,35 +18,35 @@ RSpec.describe 'User', type: 'feature' do
       visit "/users/#{@user1.id}"
     end
 
-    it 'contain some place holders buttons and links' do
-      expect(page).to have_content('Recent Posts')
+    it 'photo of @user1' do
+      expect(find("img[src='photo1']")).not_to be_nil
+    end
+
+    it "show user's name" do
       expect(page).to have_content('user1')
-      expect(page).to have_content('Post 4')
+    end
+
+    it 'show number of posts of user1' do
       expect(page).to have_content('Posts counter: 4')
-
-      expect(page).to have_button('New comment')
-
-      expect(page).to have_link('Back to users')
-      expect(page).to have_link('SHOW ALL POSTS')
     end
 
-    it 'show comments counter and likes couter post4' do
-      expect(page).to have_content('Comments: 2')
-      expect(page).to have_button('2 likes')
+    it 'show user1\'s bio' do
+      expect(page).to have_content('bio1')
     end
 
-    it 'photo of user' do
-      expect(find(".user_photo[src='photo1']")).not_to be_nil
-    end
-
-    it 'show only first 3 posts' do
+    it 'show only first 3 posts of user1' do
       expect(page).to have_selector('.post-item', count: 3)
     end
 
-    it 'check link "Back to users" works fine' do
-      click_link('Back to users')
-      expect(page).to have_content('All users')
-      expect(page).not_to have_content('Recent Posts')
+    it 'See the link show all posts' do
+      expect(page).to have_link('SHOW ALL POSTS')
+    end
+
+    it 'if click on a post, redirect to 1 post#show' do
+      visit("/users/#{@user1.id}/posts/#{@post1.id}")
+      expect(page).to have_link('Back to posts')
+      expect(page).to have_content('Post 1')
+      expect(page).to have_selector('.post-item', count: 1)
     end
 
     it 'check link "show all posts" works fine' do
@@ -54,10 +55,10 @@ RSpec.describe 'User', type: 'feature' do
       expect(page).to have_content('Recent Comments')
     end
 
-    it 'check first button "New comment" works fine' do
-      expect(page).not_to have_button('Save Comment')
-      first('button[class="link-btn"]').click
-      expect(page).to have_button('Save Comment')
+    it 'check link "Back to users" works fine' do
+      click_link('Back to users')
+      expect(page).to have_content('All users')
+      expect(page).not_to have_content('Recent Posts')
     end
   end
 end

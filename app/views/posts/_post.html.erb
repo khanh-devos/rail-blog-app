@@ -1,7 +1,10 @@
 <div id="<%= dom_id post %>" class="post-item">
+
   <h3>
     <strong>Post:</strong>
     <%= post.title %>
+    (<%= @user.name %>)
+
   </h3>
 
   <p>
@@ -46,5 +49,4 @@
   </div>
 
   
-
 </div>

@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: %i[new create]
+  before_action :set_user, only: %i[new]
 
   # '/users/:user_id/posts/:id/comments/new'
   def new; end
@@ -19,6 +20,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:text)
