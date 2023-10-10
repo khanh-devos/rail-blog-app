@@ -43,9 +43,9 @@ RSpec.describe 'User', type: 'feature' do
     end
 
     it 'if click on a post, redirect to 1 post#show' do
-      visit("/users/#{@user1.id}/posts/#{@post1.id}")
+      click_link(href: "/users/#{@user1.id}/posts/#{@post4.id}")
       expect(page).to have_link('Back to posts')
-      expect(page).to have_content('Post 1')
+      expect(page).to have_content('Post 4')
       expect(page).to have_selector('.post-item', count: 1)
     end
 

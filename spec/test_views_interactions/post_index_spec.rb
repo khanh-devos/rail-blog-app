@@ -55,11 +55,11 @@ RSpec.describe 'Post', type: 'feature' do
     end
 
     it 'show 2 likes for post1 and 0 likes for post2' do
-      within("a[href='/users/#{@user1.id}/posts/#{@post1.id}']") do
+      within("div[id='post_#{@post1.id}']") do
         expect(page).to have_button('2 likes')
       end
 
-      within("a[href='/users/#{@user1.id}/posts/#{@post2.id}']") do
+      within("div[id='post_#{@post2.id}']") do
         expect(page).to have_button('0 likes')
       end
     end

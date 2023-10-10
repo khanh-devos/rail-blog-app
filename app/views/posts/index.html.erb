@@ -11,11 +11,11 @@
   <%= render @user %>
 
   <% @posts.each do |post| %>
-    <%= link_to "/users/#{@user.id}/posts/#{post.id}" do %>
+    <%# <%= link_to "/users/#{@user.id}/posts/#{post.id}" do %>
       
       <%= render "post", post: post %>
       
-    <% end %>
+    
   <% end %>
 </div>
 
