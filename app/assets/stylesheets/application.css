@@ -20,7 +20,6 @@
   @media screen and (max-width: 768px) {
     --total_padding: 1rem 1rem;
   }
-
 }
 
 *:not(h2, h3) {
@@ -111,9 +110,9 @@ p {
 
 .link-btn {
   border: 0.1rem solid black;
-  padding: 0.1rem 0.3rem;
-  width: 7rem;
+  padding: 0.2rem 1rem;
   text-align: center;
   border-radius: 1rem;
   font-weight: bold;
+  cursor: pointer;
 }
