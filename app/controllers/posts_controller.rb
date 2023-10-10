@@ -18,9 +18,10 @@ class PostsController < ApplicationController
     @new_post.author_id = current_user.id
 
     if @new_post.save
+      flash[:notice] = 'Post created successfully!'
       redirect_to "/users/#{@new_post.author_id}"
     else
-      render :new
+      render :new, alert: 'Failed to like the post.'
     end
   end
 
