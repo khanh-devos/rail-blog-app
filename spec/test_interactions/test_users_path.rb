@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User', type: :feature do
-  describe 'GET users#index' do
+  context 'GET users#index' do
     before :each do
       user1 = User.create(name: 'user1', photo: 'photo1')
       user2 = User.create(name: 'user2', photo: 'photo2')
