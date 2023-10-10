@@ -12,7 +12,7 @@ RSpec.describe 'User', type: :feature do
       expect(page).to have_content('All users')
       expect(page).to have_content('user1')
       expect(page).to have_content('user2')
-      expect(page).to have_content('Posts counter')
+      expect(page).to have_content('Posts counter: 0')
     end
 
     it 'photo of user' do
@@ -20,15 +20,11 @@ RSpec.describe 'User', type: :feature do
     end
 
     it 'link to a user\'s posts' do
-      # context
-      user3 = User.create(name: 'user3')
-      visit '/users'
-      click_link(href: "/users/#{user3.id}")
+      click_link(href: "/users/#{@user2.id}")
 
-      # user interaction
       expect(page).to have_content('Recent Posts')
-      expect(page).to have_content('user3')
-      expect(page).to have_link('SHOW ALL POSTS', href: "/users/#{user3.id}/posts")
+      expect(page).to have_content('user2')
+      expect(page).to have_link('SHOW ALL POSTS', href: "/users/#{@user2.id}/posts")
     end
 
     it 'button "New post" works fine' do

@@ -9,6 +9,11 @@ RSpec.describe 'User', type: 'feature' do
       @post3 = Post.create(author_id: @user1.id, title: 'Post 3', text: 'text 3')
       @post4 = Post.create(author_id: @user1.id, title: 'Post 4', text: 'text 4')
 
+      @post4.comments.create(user_id: @user1.id, text: 'from user1')
+      @post4.comments.create(user_id: @user1.id, text: 'from user2')
+      @post4.likes.create(user_id: @user1.id)
+      @post4.likes.create(user_id: @user1.id)
+
       visit "/users/#{@user1.id}"
     end
 
@@ -19,11 +24,14 @@ RSpec.describe 'User', type: 'feature' do
       expect(page).to have_content('Posts counter: 4')
 
       expect(page).to have_button('New comment')
-      expect(page).to have_content('Comments: 0')
-      expect(page).to have_button('0 likes')
 
       expect(page).to have_link('Back to users')
       expect(page).to have_link('SHOW ALL POSTS')
+    end
+
+    it 'show comments counter and likes couter post4' do
+      expect(page).to have_content('Comments: 2')
+      expect(page).to have_button('2 likes')
     end
 
     it 'photo of user' do
@@ -50,19 +58,6 @@ RSpec.describe 'User', type: 'feature' do
       expect(page).not_to have_button('Save Comment')
       first('button[class="link-btn"]').click
       expect(page).to have_button('Save Comment')
-    end
-
-    it 'check comments and likes count' do
-      user1 = User.create(name: 'user1', bio: 'bio1', photo: 'photo1')
-      post1 = Post.create(author_id: user1.id, title: 'Post 1', text: 'text 1')
-      post1.comments.create(user_id: user1.id, text: 'from user1')
-      post1.comments.create(user_id: user1.id, text: 'from user2')
-      post1.likes.create(user_id: user1.id)
-      post1.likes.create(user_id: user1.id)
-      visit "/users/#{user1.id}"
-
-      expect(page).to have_content('Comments: 2')
-      expect(page).to have_button('2 likes')
     end
   end
 end
