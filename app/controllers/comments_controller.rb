@@ -10,8 +10,8 @@ class CommentsController < ApplicationController
     @new_comment.user_id = current_user.id
     @new_comment.post_id = @post.id
 
-    puts '====================================='
     if @new_comment.save
+      flash[:notice] = 'New comment added successfully!'
       redirect_to "/users/#{@post.author_id}/posts/#{@post.id}"
     else
       render :new

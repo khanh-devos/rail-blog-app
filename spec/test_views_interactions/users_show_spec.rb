@@ -11,7 +11,6 @@ RSpec.describe 'users/show', type: :view do
     expect(rendered).to have_selector('img')
   end
 
-
   it 'renders the user partial' do
     expect(rendered).to render_template(partial: '_user')
   end
