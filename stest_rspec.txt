@@ -11,3 +11,9 @@ Notice: "subject" must be a default name when testing with rspec
 ========== TEST CONTROLLERS ====================================
 # in Gemfile, part development test, add: 
 gem 'rails-controller-testing'
+
+========== TEST VIEW ========================
+gem 'capybara'
+Ter: bundle i 
+Ter: rails g rspec:install
+

@@ -3,7 +3,9 @@
 <header>
   <h2>All users</h2>
   
-  <%= button_to 'New post', post_new_path(id: current_user.id), method: 'get', class: "link-btn" %>
+  <% if user_signed_in? %>
+    <%= button_to 'New post', post_new_path(id: current_user.id), method: 'get', class: 'link-btn' %>
+  <% end %>
   
 
 <header>

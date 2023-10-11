@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
+  # devise_for :users, controllers: {
+  #   sessions: 'users/sessions'
+  # }
+  get '/users/sign_out', to: 'users#sign_out', as: 'sign_out'
+
+
   # resources :likes
-  resources :users do
-    resources :posts
-  end
+  # resources :users  
   # resources :comments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
