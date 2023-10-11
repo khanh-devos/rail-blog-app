@@ -7,7 +7,10 @@ Ter: rails g devise:install
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 Ter: rails g devise CLASS_name      # User or Admin
-Ter: need to clear all users in database if necessary: rails c
+Ter: clear all users in database if necessary: rails c
+
+Notice: config :confirmable at model "user" if want 'email confirmation' feature.
+Notice: uncomment some fields at schema file also before migrating.
 Ter: rails db:migrate
 
 new_user_session GET        /users/sign_in(.:format)     devise/sessions#new
