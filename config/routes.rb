@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :likes
+  devise_for :users
+
+  # devise_for :users, controllers: {
+  #   sessions: 'users/sessions'
+  # }
+  get '/users/sign_out', to: 'users#sign_out', as: 'sign_out'
+
+
+  # resources :likes
   # resources :users
   # resources :comments
   # resources :posts

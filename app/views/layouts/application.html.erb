@@ -14,6 +14,34 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+    <header class='navigation'>
+      <strong>
+      <%= link_to 'Sign Up', new_user_registration_path  %>
+      </strong>
+
+      <strong>
+      <%= link_to 'Home', '/'  %>
+      </strong>
+
+      <% if user_signed_in?  %>
+        <strong>
+          <%= link_to 'Log Out', destroy_user_session_path  %>
+        </strong>
+        
+        <strong>
+          <%= current_user.name %>
+        </strong>
+      <% else %>
+        <strong>
+          <%= link_to 'Log In', new_user_session_path  %>
+        </strong>
+
+      <% end %>
+    </header>
+
     <%= yield %>
   </body>
 </html>
