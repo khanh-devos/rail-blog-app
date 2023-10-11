@@ -1,3 +1,5 @@
 gem 'cancancan'
 Ter: bundle i
 
+Add col "role" to the tabel users by a new migration.
+
