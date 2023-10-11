@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   # new_user_registration GET    /users/sign_up(.:format)
   def new; end
 
+  def confirmation; end
+
   # GET /users/1 or /users/1.json
   def show
     @user = User.find(params[:id])
