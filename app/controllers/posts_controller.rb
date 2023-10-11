@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  before_action :set_user, only: %i[show index]
-  before_action :set_post, only: %i[show]
+  before_action :authenticate_user!, only: %i[create destroy]
+
+  before_action :set_user, only: %i[show index destroy]
+  before_action :set_post, only: %i[show destroy]
 
   # # GET /posts or /posts.json
   def index
@@ -23,6 +25,8 @@ class PostsController < ApplicationController
       render :new, alert: 'Failed to like the post.'
     end
   end
+
+  
 
   private
 
