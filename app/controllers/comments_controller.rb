@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   before_action :set_post, only: %i[new create]
   before_action :set_user, only: %i[new]
 
@@ -17,6 +19,14 @@ class CommentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    selected_comment = Comment.find(params[:id])
+    return unless selected_comment.destroy
+
+    flash[:success] = 'Comment deleted successfully!'
+    redirect_to request.referer
   end
 
   private

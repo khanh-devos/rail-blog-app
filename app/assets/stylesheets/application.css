@@ -101,7 +101,10 @@ p {
 }
 
 .comment-item:first-child {
-  border-top: 0.1rem solid greenyellow;
+  border: 0.1rem solid greenyellow;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .form {

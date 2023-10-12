@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
-  before_action :set_user, only: %i[show index]
-  before_action :set_post, only: %i[show]
+  load_and_authorize_resource
+
+  # before_action :authenticate_user!, only: %i[create destroy]
+
+  before_action :set_user, only: %i[show index destroy]
+  before_action :set_post, only: %i[show destroy]
 
   # # GET /posts or /posts.json
   def index
@@ -22,6 +26,14 @@ class PostsController < ApplicationController
     else
       render :new, alert: 'Failed to like the post.'
     end
+  end
+
+  def destroy
+    selected_post = Post.find(params[:id])
+    return unless selected_post.destroy
+
+    flash[:notice] = 'Post deleted successfully'
+    redirect_to request.referer
   end
 
   private

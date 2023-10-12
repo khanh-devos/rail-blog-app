@@ -1,9 +1,18 @@
-<div id="<%= dom_id comment %>" class="comment-item">
+<div id="<%= dom_id comment %>">
   
-  <p>
+  <div class="comment-item">
     <%= User.find(comment.user_id).name %>
     :
     <%= comment.text %>
-  </p>
+
+    <% if user_signed_in? %>
+
+      <% if (can? :destroy, comment) %>
+        <%= button_to "X", "/users/#{comment.user_id}/posts/#{comment.post_id}/comments/#{comment.id}", method: 'delete' %>
+      <% end %>
+
+    <% end %>
+
+  </div>
 
 </div>

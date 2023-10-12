@@ -16,13 +16,13 @@
     <% end %>  
   </p>
 
-  
-
+<% end %>
 
 
   <div class="comments-container">
   <% if url_for.match(/posts/) %>
     <% if url_for.match(/posts\//) %>
+    
         <% post.comments.each do |comment| %>
           <%= render comment %>
         <% end %>
@@ -39,16 +39,29 @@
   <% end %>
   </div>
 
-<% end %>
   <div class="comment-like-bottom">
     
-    <%= button_to 'New comment', comment_new_path(user_id: post.author_id, id: post.id), method: 'get', class: 'link-btn' %>
+    <% if user_signed_in? %>
+      
+      <% if (can? :destroy, post) %>
+        <%= button_to "delete", "/users/#{@user.id}/posts/#{post.id}", method: 'delete' %>
+      
+      <% end %>
 
-    <strong>Comments:
-      <%= post.comments_counter %>
-    </strong>
-    <div>
+
+      <%= button_to 'New comment', comment_new_path(user_id: post.author_id, id: post.id), method: 'get', class: 'link-btn' %>
+
+      <strong>Comments:
+        <%= post.comments_counter %>
+      </strong>
+
+      
+
       <%= button_to "#{post.likes_counter} likes", like_create_path(user_id: post.author_id, id: post.id), method: 'post' %>
-    </div>
+
+    <% end %>
+
+
+
   </div>
 </div>

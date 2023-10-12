@@ -1,21 +1,13 @@
 Rails.application.routes.draw do
-
   devise_for :users
-
-  # devise_for :users, controllers: {
-  #   sessions: 'users/sessions'
-  # }
   get '/users/sign_out', to: 'users#sign_out', as: 'sign_out'
 
-
-  # resources :likes
-  # resources :users  
-  # resources :comments
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # get '/users', to: 'users#index'
-  # get '/users/:id', to: 'users#show', as: 'show_a_user'
+  resources :users, only: %i[index show] do
+    resources :posts, only: %i[index show new destroy] do
+      resources :comments, only: %i[destroy]
+      resources :likes, only: %i[]
+    end
+  end
   
 
   get '/users/:id/posts/new', to: 'posts#new', as: 'post_new'
@@ -26,9 +18,11 @@ Rails.application.routes.draw do
 
   post '/users/:user_id/posts/:id/likes/create', to: 'likes#create', as: 'like_create'
 
-  get '/users/:user_id/posts', to: 'posts#index', as: 'show_a_user_posts_comments'
-  get '/users/:user_id/posts/:id', to: 'posts#show', as: 'show_a_user_a_post_comments'
+  # get '/users/:user_id/posts', to: 'posts#index', as: 'show_a_user_posts_comments'
+  # get '/users/:user_id/posts/:id', to: 'posts#show', as: 'show_a_user_a_post_comments'
 
   root 'users#index'
+
+
 
 end

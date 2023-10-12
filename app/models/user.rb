@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
   end
@@ -16,5 +17,9 @@ class User < ApplicationRecord
 
   def recent_posts(num = 3)
     posts.order(created_at: :desc).limit(num)
+  end
+
+  def admin?
+    role == 'admin'
   end
 end
