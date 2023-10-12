@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show] do
     resources :posts, only: %i[index show new destroy] do
-      resources :comments, only: %i[]
+      resources :comments, only: %i[destroy]
       resources :likes, only: %i[]
     end
   end

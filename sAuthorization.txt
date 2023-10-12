@@ -1,5 +1,6 @@
 gem 'cancancan'
 Ter: bundle i
+Ter: rails g cancan:ability
 
 Add col "role" to the tabel users by a new migration.
 

@@ -19,6 +19,14 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    selected_comment = Comment.find(params[:id])
+    return unless selected_comment.destroy
+
+    flash[:success] = 'Comment deleted successfully!'
+    redirect_to request.referer
+  end
+
   private
 
   def set_user

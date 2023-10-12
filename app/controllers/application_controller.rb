@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
       u.permit(:role, :name, :bio, :photo, :email, :password, :current_password)
     end
 
-    devise_parameter_sanitizer.permit(:account_update) do |u| 
+    devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:role, :name, :bio, :photo, :email, :password, :current_password)
     end
   end

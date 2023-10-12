@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create destroy]
+  # before_action :authenticate_user!, only: %i[create destroy]
 
   before_action :set_user, only: %i[show index destroy]
   before_action :set_post, only: %i[show destroy]
@@ -28,12 +28,12 @@ class PostsController < ApplicationController
 
   def destroy
     selected_post = Post.find(params[:id])
-    if selected_post.destroy
-      flash[:notice] = 'Post deleted successfully'
-      redirect_to request.referer
-    end
+    return unless selected_post.destroy
+
+    flash[:notice] = 'Post deleted successfully'
+    redirect_to request.referer
   end
-  
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
