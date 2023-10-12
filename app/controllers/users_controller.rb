@@ -2,10 +2,6 @@ class UsersController < ApplicationController
   # GET /users or /users.json
   def index
     @users = User.all.order(created_at: 'desc')
-    puts '===================================='
-    puts session[:khanh] = '22334'
-    puts '===================================='
-
   end
 
   # new_user_registration GET    /users/sign_up(.:format)
