@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  get '/users/sign_out', to: 'users#sign_out', as: 'sign_out'
+  get '/users/sign_out', to: 'users#user_sign_out', as: 'sign_out'
 
   resources :users, only: %i[index show] do
     resources :posts, only: %i[index show new destroy] do
