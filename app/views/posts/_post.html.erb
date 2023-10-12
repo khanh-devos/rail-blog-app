@@ -43,7 +43,7 @@
     
     <% if user_signed_in? %>
       
-      <% if (can? :destroy, Post) || (post.author_id == current_user.id) %>
+      <% if (can? :destroy, post) %>
         <%= button_to "delete", "/users/#{@user.id}/posts/#{post.id}", method: 'delete' %>
       
       <% end %>

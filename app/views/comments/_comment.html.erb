@@ -7,7 +7,7 @@
 
     <% if user_signed_in? %>
 
-      <% if (can? :destroy, Comment) || (comment.user_id == current_user.id) %>
+      <% if (can? :destroy, comment) %>
         <%= button_to "X", "/users/#{comment.user_id}/posts/#{comment.post_id}/comments/#{comment.id}", method: 'delete' %>
       <% end %>
 
