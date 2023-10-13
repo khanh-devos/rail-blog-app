@@ -1,0 +1,10 @@
+# Add gem for auto build API docs
+# Condition is to build a test first
+gem 'rswag'
+
+
+Ter: bundle i
+Ter: rails g rswag:install
+
+# create a file for testing api/v1/comments_controller
+Ter: rails generate rspec:swagger api::v1::comments_controller

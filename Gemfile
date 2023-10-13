@@ -55,6 +55,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'webdrivers' # allow interact with the browser. (supporting capybara)
+
+  
 end
 
 group :development do
@@ -76,3 +78,4 @@ end
 
 gem 'cancancan'
 gem 'devise'
+gem 'rswag'
