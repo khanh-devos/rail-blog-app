@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
+  # for API
+  get '/users/api', to: 'users#index_api', to: 'users#index_api'
+  get '/users/:user_id/posts/:id/api', to: 'posts#show_api'
+  post '/api/auth/login', to: 'authentication#login'
 
 
 end
