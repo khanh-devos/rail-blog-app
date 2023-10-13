@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can [:read, :show_api], Post
+    can %i[read show_api], Post
     can [:read], User
     can :manage, Comment
 

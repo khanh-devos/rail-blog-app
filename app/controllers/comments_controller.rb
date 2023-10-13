@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
   before_action :set_post, only: %i[new create index_api]
   before_action :set_user, only: %i[new]
 
-
   # '/users/:user_id/posts/:id/comments/new'
   def new; end
 
