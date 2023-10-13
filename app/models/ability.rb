@@ -2,7 +2,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can %i[read show_api], Post
     can [:read], :all
 
     return unless user.present?
