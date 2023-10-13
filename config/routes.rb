@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get '/api/users/:user_id/posts/:id', to: 'posts#show_api'
   
   post '/api/auth/login', to: 'authentication#login'
-  post '/api/comments/new', to: 'comments#create_api'
 
   namespace :api, default: {format: :json} do
     namespace :v1 do

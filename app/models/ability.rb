@@ -3,8 +3,7 @@ class Ability
 
   def initialize(user)
     can %i[read show_api], Post
-    can [:read], User
-    can :manage, Comment
+    can [:read], :all
 
     return unless user.present?
 

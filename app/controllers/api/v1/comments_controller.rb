@@ -1,11 +1,17 @@
 class Api::V1::CommentsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: %i[create]
   skip_before_action :verify_authenticity_token
 
   def index
-    @post = Post.includes(:comments).find(params[:post_id])
+    @post = Post.find(params[:post_id])
     @comments = @post.comments
-    render json: { success: true, data: { comments: @comments } }
+    render json: { 
+      success: true, 
+      data: { 
+          post: @post,
+          comments: @comments
+        } 
+      }
   end
 
   def create
