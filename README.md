@@ -109,6 +109,8 @@ it will install the required gemfile for running the project
 - Twitter: [@khanhror](https://twitter.com/home?lang=en)
 - LinkedIn: [Khanh RoR](https://www.linkedin.com/in/khanh-dom/)
 
+👤 **Kiko**
+- GitHub: [Kiko](https://github.com/kit0-0)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
