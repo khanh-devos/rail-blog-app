@@ -1,0 +1,23 @@
+gem 'cancancan'
+Ter: bundle i
+Ter: rails g cancan:ability
+
+Add col "role" to the tabel users by a new migration.
+Notice: for the controller class or resource applied need add the helper:
+
+# Apply authorization on all the methods a controller, use this line:
+load_and_authorize_resource
+
+# Notice: if we have some custom method name, add it
+read: [:index, :show]
+create: [:new, :create]
+update: [:edit, :update]
+destroy: [:destroy]
+# Notice: if we have some custom method name, add it
+
+
+
+
+
+
+

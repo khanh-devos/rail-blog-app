@@ -23,6 +23,20 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
+  # for API
+  get '/api/users', to: 'users#index_api'
+  get '/api/users/:user_id/posts/:id', to: 'posts#show_api'
+  
+  post '/api/auth/login', to: 'authentication#login'
 
+  namespace :api, default: {format: :json} do
+    namespace :v1 do
+      resources :users, only: %i[index] do
+        resources :posts, only: %i[index show] do
+          resources :comments, only: %i[index create]
+        end
+      end
+    end
+  end 
 
 end

@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_post, only: %i[new create]
+  before_action :set_post, only: %i[new create index_api]
   before_action :set_user, only: %i[new]
 
   # '/users/:user_id/posts/:id/comments/new'

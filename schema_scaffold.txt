@@ -3,6 +3,9 @@ CREATA A TABLE post
 Manjaro Notice: grant permission first
 Manjaro Notice: grant permission first
 
+# should change the name of database inside config/db
+Ter: rails db:create 
+
 # create a post_table migration and a post controller
 # Notice: createdAt & updatedAt is default in rails 7
 # Manual|Intruction: rails g scaffold --help 
