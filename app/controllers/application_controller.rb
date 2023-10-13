@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include JwtApi
 
-  # before_action :authenticate_request
+  before_action :authenticate_request, only: %i[login]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
